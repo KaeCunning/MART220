@@ -1,0 +1,111 @@
+<html>
+  <head>
+  <title>Homework2</title>
+  <body>
+      <a href="file:///C:/Users/heble/OneDrive/Desktop/UniStuff/GitHub/Creative%20Coding%20ll/Homework%20Week%202/HWweek2Titlescreen.html"> Back to Title Screen </a>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+  <script>
+
+
+
+
+  var mouseShapeX = [];
+  var mouseShapeY = [];
+  var ghostArray = [];
+  var ghost = 50;
+  var ghostDir = [];
+  var gosGhostX = 10;
+  var gosGhostY = 10;
+  var i = 0;
+
+
+    function setup() {
+      createCanvas(1200, 700);
+}
+    function draw() {
+      createMap();
+      var j = i;
+        while (j>=0){
+        circleClick(j);
+        ghostRoam(j);
+        j= j-1;
+        }
+}
+
+
+        function createMap() {
+          background(200);
+          fill('#000000');
+          text('Kaelanator',1100, 675);
+          textSize(30);
+          fill('#00A8CD');
+          text('GHOST',45, 60);
+          textSize(15);
+          fill('#15697B');
+          text('click anywhere!',600, 500);
+    }
+        function circleClick(ghostCount){
+          //for (var j=0; j< ghostArray.length;j++)
+
+            fill('#7CA497');
+            circle(mouseShapeX[ghostCount],mouseShapeY[ghostCount], ghost);
+            fill('#B7B7B7');
+            circle(mouseShapeX[ghostCount]+10,mouseShapeY[ghostCount],5);
+            circle(mouseShapeX[ghostCount]-10,mouseShapeY[ghostCount],5);
+            line(mouseShapeX[ghostCount], mouseShapeY[ghostCount]+10, mouseShapeX[ghostCount]+5, mouseShapeY[ghostCount]+15);
+            line(mouseShapeX[ghostCount], mouseShapeY[ghostCount]+10, mouseShapeX[ghostCount]-5, mouseShapeY[ghostCount]+15);
+
+            fill('#0B0063');
+            circle(gosGhostX,gosGhostY, ghost);
+
+
+        }
+        function mouseClicked(){
+          i= i+1;
+          mouseShapeX[i]= mouseX;
+          mouseShapeY[i]= mouseY;
+          gosGhostX= mouseX;
+          gosGhostY= mouseY;
+          var j = i;
+            while (j>=0){
+            if (ghostDir[j]>0) {
+              ghostDir[j]=1;
+            } else {
+              ghostDir[j]=-1;
+            }
+
+            j= j-1;
+            }
+          //circle(mouseShapeX,mouseShapeY, ghost);
+
+        }
+        function ghostRoam(ghostMoveCount){
+          //ghostDir[ghostMoveCount]=;
+          if (mouseShapeX[ghostMoveCount]>=1175) {
+            ghostDir[ghostMoveCount] = -1;
+
+          }
+            else if (mouseShapeX[ghostMoveCount]<=25) {
+            ghostDir[ghostMoveCount] = 1;
+            }
+
+          mouseShapeX[ghostMoveCount] = mouseShapeX[ghostMoveCount] +(3 * ghostDir[ghostMoveCount]);
+        }
+        function ghostIdle(){ //how do i make it address the circle already created?
+          if (ghost>0) {
+
+          }
+        }
+
+        //sketch of how this will work.
+        //when ghost is created, color randomizer chooses the ghost hue
+        //If "a certain hue is present" then "give ghost this personality"
+        //maybe a switch statement? unsure if "hues" mechanic will work in a loop.
+
+
+
+
+  </script>
+  </head>
+</html>
